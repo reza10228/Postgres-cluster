@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  pg-0:
+  pg-1:
     image: docker.io/bitnami/postgresql-repmgr:14
     ports:
       - 5432:5432
@@ -15,12 +15,12 @@ services:
       - REPMGR_PRIMARY_HOST=pg-0
       - REPMGR_PRIMARY_PORT=5432
       - REPMGR_PARTNER_NODES=pg-0:5432,pg-1:5432,pg-2:5432
-      - REPMGR_NODE_NAME=pg-0
-      - REPMGR_NODE_NETWORK_NAME=pg-0
+      - REPMGR_NODE_NAME=pg-1
+      - REPMGR_NODE_NETWORK_NAME=pg-1
       - REPMGR_PORT_NUMBER=5432
     extra_hosts:
-#      - "pg-0:IP_SERVER_MASTER"
-      - "pg-1:IP_SERVER_SLAVE"
+      - "pg-0:IP_SERVER_MASTER"
+#      - "pg-1:IP_SERVER_SLAVE"
       - "pg-2:IP_SERVER_SLAVE"
     networks:
       - db-net
